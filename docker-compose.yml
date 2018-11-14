@@ -1,0 +1,44 @@
+version: '3'
+
+services:
+  frontend:
+    build:
+      context: fe/.
+    image: taobeier/saythx-fe
+    ports:
+      - "8088:80"
+    depends_on:
+      - backend
+    networks:
+      - saythx
+
+  backend:
+    build:
+      context: be/.
+    image: taobeier/saythx-be
+    depends_on:
+      - redis
+    networks:
+      - saythx
+    environment:
+      - REDIS_HOST=redis
+    
+  work:
+    build:
+      context: work
+    image: taobeier/saythx-work
+    depends_on:
+      - redis
+    networks:
+      - saythx
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+
+  redis:
+    image: "redis:5"
+    networks:
+      - saythx
+
+networks:
+  saythx:
