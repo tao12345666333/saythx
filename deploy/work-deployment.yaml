@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: work
+  name: saythx-work
+  namespace: work
+spec:
+  selector:
+    matchLabels:
+      app: work
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: work
+    spec:
+      containers:
+      - env:
+        - name: REDIS_HOST
+          value: saythx-redis
+        - name: REDIS_PORT
+          value: "6379"
+        image: taobeier/saythx-work
+        name: work

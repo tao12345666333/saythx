@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: backend
+  name: saythx-backend
+  namespace: work
+spec:
+  selector:
+    matchLabels:
+      app: backend
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - env:
+        - name: REDIS_HOST
+          value: saythx-redis
+        image: taobeier/saythx-be
+        name: backend
+        ports:
+        - containerPort: 8080
