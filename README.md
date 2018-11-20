@@ -1,4 +1,4 @@
-# Honor list Project
+# SayThx
 
 Inspired by [Say Thanks Porject](https://github.com/kennethreitz/saythanks.io).
 
