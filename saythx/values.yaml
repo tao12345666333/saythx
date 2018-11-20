@@ -1,29 +1,36 @@
 # Default values for saythx.
+
+# backend is the values for backend
 backend:
   image: taobeier/saythx-be
   tag: "1.0"
   pullPolicy: IfNotPresent
   replicas: 1
 
+# frontend is the values for frontend
 frontend:
   image: taobeier/saythx-fe
   tag: "1.0"
   pullPolicy: IfNotPresent
   replicas: 1
 
+# work is the values for work
 work:
   image: taobeier/saythx-work
   tag: "1.0"
   pullPolicy: IfNotPresent
   replicas: 1
 
+# redis is the values for redis
 redis:
   image: redis
   tag: 5
   pullPolicy: IfNotPresent
   replicas: 1
 
+# namespace is the values for deploy namespace
 namespace: work
 
+# service.type is the values for service type
 service:
   type: NodePort
