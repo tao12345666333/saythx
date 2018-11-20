@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: frontend
+  name: saythx-frontend
+  namespace: {{ .Values.namespace }}
+spec:
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+      - image: {{ .Values.frontend.image }}:{{ .Values.frontend.tag }}
+        name: frontend
+        ports:
+        - containerPort: 80

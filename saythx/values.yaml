@@ -1,0 +1,29 @@
+# Default values for saythx.
+backend:
+  image: taobeier/saythx-be
+  tag: "1.0"
+  pullPolicy: IfNotPresent
+  replicas: 1
+
+frontend:
+  image: taobeier/saythx-fe
+  tag: "1.0"
+  pullPolicy: IfNotPresent
+  replicas: 1
+
+work:
+  image: taobeier/saythx-work
+  tag: "1.0"
+  pullPolicy: IfNotPresent
+  replicas: 1
+
+redis:
+  image: redis
+  tag: 5
+  pullPolicy: IfNotPresent
+  replicas: 1
+
+namespace: work
+
+service:
+  type: NodePort
