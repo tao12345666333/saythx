@@ -7,9 +7,10 @@ metadata:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   rules:
-  - http:
+  - host: saythx.moelove.info
+    http:
       paths:
-      - path: /saythx
+      - path: /
         backend:
           serviceName: saythx-frontend
           servicePort: 80
