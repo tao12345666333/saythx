@@ -1,0 +1,29 @@
+name: Kind in CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Set up Go 1.13
+      uses: actions/setup-go@v1
+      with:
+        go-version: 1.13
+      id: go
+    - uses: actions/checkout@v1
+    - name: Create K8S Cluster by kind
+      id: kind
+      uses: engineerd/setup-kind@v0.1.0
+      with:
+        config: hack/kind-config.yaml
+    - name: Deploy
+      id: deploy
+      run: |
+        export KUBECONFIG="$(kind get kubeconfig-path)"
+        kubectl wait --for=condition=Ready nodes --all --timeout=5m
+        kubectl get nodes
+        kubectl create -f deploy
+        kubectl wait --for=condition=Ready pods -n work --all --timeout=5m
